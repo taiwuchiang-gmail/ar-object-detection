@@ -1,0 +1,21 @@
+{
+  "source_kind": "historical_annotated_python_detection_output",
+  "source_filename": "capture_movie_2024_05_15_13_54_09.avi",
+  "source_frame_size": [
+    1080,
+    1440
+  ],
+  "source_fps": 30,
+  "source_duration_seconds": 50.4666666,
+  "output_frame_size": [
+    540,
+    720
+  ],
+  "output_frames": 1514,
+  "gif_interval_seconds": [
+    20,
+    28
+  ],
+  "gif_fps": 8,
+  "notes": "Existing boxes and scores retained; resize/encode only. No new training or inference."
+}

@@ -4,6 +4,16 @@
 
 Yellow duck is the current reproduction focus; bike and laser configurations are retained.
 
+## Yellow duck detection preview
+
+![Yellow duck detection preview](docs/media/yellow-duck-detection.gif)
+
+[Watch or download the full MP4 (50 seconds)](docs/media/yellow-duck-detection.mp4) · [Still frame](docs/media/yellow-duck-detection.png)
+
+Historical annotated output from the Python detection stage, showing the duck at different viewing angles with bounding boxes and confidence scores. The animation is an 8-second excerpt; the MP4 contains the complete saved result. Original predictions are retained, with only resizing and re-encoding for preview. This is an existing result, not a newly reproduced end-to-end training run.
+
+The training workflow generates its object annotations automatically; no manual bounding-box annotation is required. [Preview provenance](docs/media/yellow-duck-detection.json). To regenerate these media files from the original annotated recording, run `exportDuckDemo` in MATLAB after local asset setup; the exporter refuses to overwrite existing demo files.
+
 ## Workflow
 
 KIRI Engine scan on iPhone → 3D render on black → automatic MATLAB foreground boxes → small YOLOv2 bootstrap detector → confident real-scene candidates → YOLOv8 training → repeated candidate selection and retraining.
@@ -31,7 +41,7 @@ Scanning and rendering are external steps. Source code for those stages was not 
 | tests | MATLAB geometry and Python dataset checks |
 | docs | Asset setup and yellow-duck reproduction guide |
 
-Recordings, model weights, datasets, historical scripts, vendor code, local configuration, and generated runs are ignored by Git. The original project folders remain unchanged.
+Recordings, model weights, datasets, historical scripts, vendor code, local configuration, and generated runs are ignored by Git, with the selected small result preview under docs/media included for demonstration. The original project folders remain unchanged.
 
 ## Setup
 
