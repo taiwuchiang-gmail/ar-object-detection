@@ -1,0 +1,39 @@
+{
+  "original_matlab_root": "",
+  "original_python_root": "",
+  "external_datasets": "",
+  "rtsp_url": "",
+  "objects": {
+    "bike": {
+      "ground_truth": "data/matlab/bike5.mat",
+      "matlab_model": "models/matlab/detectordata_bike.mat",
+      "matlab_variable": "detector_bike",
+      "python_model": "models/python/bike_train5.pt",
+      "confidence": 0.8,
+      "threshold": 1,
+      "dilation_radius": 30,
+      "min_area": 0
+    },
+    "duck": {
+      "ground_truth": "data/matlab/duck.mat",
+      "matlab_model": "models/matlab/detectordata_duck.mat",
+      "matlab_variable": "detector_duck",
+      "python_model": "models/python/duck_train2.pt",
+      "confidence": 0.5,
+      "threshold": 5,
+      "dilation_radius": 5,
+      "min_area": 100
+    },
+    "laser": {
+      "ground_truth": "data/matlab/laser.mat",
+      "matlab_model": "models/matlab/detectordata_laser.mat",
+      "matlab_variable": "detector_laser",
+      "python_model": "",
+      "confidence": 0.8,
+      "threshold": 1,
+      "dilation_radius": 50,
+      "min_area": 0,
+      "python_model_note": "No trained laser YOLOv8 checkpoint identified; supply --model explicitly."
+    }
+  }
+}

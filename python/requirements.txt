@@ -1,0 +1,4 @@
+# Historical versions unknown; validate in a fresh environment.
+ultralytics
+opencv-python
+PyYAML

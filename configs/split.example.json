@@ -1,0 +1,14 @@
+[
+  {
+    "directory": "datasets/duck/recording_a_iteration_001",
+    "split": "train"
+  },
+  {
+    "directory": "datasets/duck/independent_manual_labels",
+    "split": "val"
+  },
+  {
+    "directory": "datasets/duck/held_out_manual_labels",
+    "split": "test"
+  }
+]

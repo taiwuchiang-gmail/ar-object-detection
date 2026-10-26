@@ -1,0 +1,4 @@
+name = "AR Object Detection"
+[folders]
+path = ["matlab"]
+test = ["tests"]
