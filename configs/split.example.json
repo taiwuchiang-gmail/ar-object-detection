@@ -4,11 +4,11 @@
     "split": "train"
   },
   {
-    "directory": "datasets/duck/independent_manual_labels",
+    "directory": "datasets/duck/validation_recording_auto_labels",
     "split": "val"
   },
   {
-    "directory": "datasets/duck/held_out_manual_labels",
+    "directory": "datasets/duck/test_recording_auto_labels",
     "split": "test"
   }
 ]

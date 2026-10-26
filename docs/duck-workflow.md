@@ -1,12 +1,14 @@
 # Yellow duck reproduction
 
+**No manual image annotation is required.** All project-specific training boxes are generated automatically: foreground extraction labels synthetic renders, YOLOv2 labels real-scene candidates, and YOLOv8 supplies labels for subsequent iterations. Scanning/rendering and choosing confidence thresholds do not involve drawing bounding boxes.
+
 1. Scan the real duck in KIRI Engine on iPhone and export its 3D model. This is an external step; no scan or renderer project was supplied.
 2. Render varied views on black backgrounds. Existing duck.mp4 and duck_cropped.mp4 permit starting here.
 3. Inspect cropping and automatic labels. The historical duck_cropped.mp4 midpoint cuts off part of the duck. Its frame rate/duration differs from the original recording. Review these before regenerating training data.
 4. Run `ar.prepareSynthetic('duck',renderedVideoPath,'render_001')` to produce full images/labels plus separate crops. Full-frame labels belong to full images; cropped images require their own coordinates.
-5. Run `ar.trainBootstrap('duck',datasetDir,baseNetworkPath,'bootstrap_001')`. A gTruth MAT path may be supplied instead of datasetDir.
+5. Run `ar.trainBootstrap('duck',datasetDir,baseNetworkPath,'bootstrap_001')`. A gTruth MAT path containing automatically generated labels may be supplied instead of datasetDir; gTruth is MATLAB's label container, not a requirement for manual annotation.
 6. Run `ar.exportCandidates('duck',realVideoPath,'recording_a_yolov2_001',modelPath,0.5)` to retain confident YOLOv2 predictions.
-7. Assemble recording-level splits, train YOLOv8, and export a fresh candidate iteration. Keep independently checked real labels for validation/test; confidence alone cannot establish correctness.
+7. Assemble recording-level splits, train YOLOv8, and export a fresh candidate iteration. The partitions can use automatically generated labels. Optional human review is a separate quality-control step, not a training prerequisite. When evaluating against automatic labels, scores measure agreement with those labels rather than independently established detection accuracy.
 
 ## Verified baseline
 

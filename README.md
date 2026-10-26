@@ -1,10 +1,22 @@
 # AR Object Detection
 
-MATLAB + Python object detection from synthetic 3D renders and AR-glasses recordings, with an iterative high-confidence training loop. Yellow duck is the current reproduction focus; bike and laser configurations are retained.
+**Train an object detector without manually annotating images.** This MATLAB + Python workflow automatically generates all project-specific bounding-box annotations, starting from synthetic 3D renders and expanding to real scenes through high-confidence predictions. No hand-drawn boxes or manual correction of training labels is required.
+
+Yellow duck is the current reproduction focus; bike and laser configurations are retained.
 
 ## Workflow
 
 KIRI Engine scan on iPhone → 3D render on black → automatic MATLAB foreground boxes → small YOLOv2 bootstrap detector → confident real-scene candidates → YOLOv8 training → repeated candidate selection and retraining.
+
+## How annotations are generated automatically
+
+| Stage | Automatic annotation source |
+|---|---|
+| Synthetic bootstrap | MATLAB separates the rendered object from its black background and computes its bounding box. |
+| First real-scene training set | The small YOLOv2 detector predicts boxes; confidence filtering selects candidates for YOLOv8 training. |
+| Subsequent training iterations | YOLOv8 predicts boxes on real footage; high-confidence predictions become labels for the next iteration. |
+
+The feedback loop replaces manual annotation throughout the training workflow. Scanning an object with KIRI Engine and rendering views are preparation steps; they do not require manually drawing labels. Existing pretrained checkpoints may initialize the networks; the automatic-annotation claim concerns labels generated within this project.
 
 Scanning and rendering are external steps. Source code for those stages was not part of the recovered project.
 
@@ -54,7 +66,7 @@ python python/pipeline.py split --object duck --manifest configs/my-split.json -
 python python/pipeline.py train --object duck --data datasets/duck/assembled_001/dataset.yaml --model models/python/yolov8s.pt --name duck_001 --epochs 50
 ```
 
-Copy configs/split.example.json to a new manifest and replace the examples with real, separate recording sessions. Keep all feedback iterations from one recording in the same partition. Candidate exports record source/model/confidence provenance; each run uses a new name. Candidate generation currently selects at most one object per frame, matching the historical experiments.
+Copy configs/split.example.json to a new manifest and replace the examples with real, separate recording sessions. Keep all feedback iterations from one recording in the same partition. Train, validation, and test folders can all use automatically generated labels; no manually labeled split is required to run the workflow. Optional human review or independent accuracy assessment is separate from training. Candidate exports record source/model/confidence provenance; each run uses a new name. Candidate generation currently selects at most one object per frame, matching the historical experiments.
 
 ## Verification
 

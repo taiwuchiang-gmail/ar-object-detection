@@ -6,7 +6,7 @@ On a fresh clone, run `python python/setup_local.py --matlab-root "PATH_TO_ORIGI
 
 Dataset generation creates directories under datasets/; training and prediction create directories under runs/. Iteration names must be new. Keep each recording session entirely within one train/validation/test partition, including all feedback iterations derived from it.
 
-MATLAB ground truth can embed an old source path. `ar.relocateGroundTruth(inputPath,oldPath,newPath,newOutputPath)` saves a separate copy with corrected references. The original MAT file is preserved.
+The saved gTruth/ground-truth files are annotation containers and can hold the automatically generated boxes; their name does not imply manual labeling. No manually annotated dataset is required. MATLAB ground truth can embed an old source path. `ar.relocateGroundTruth(inputPath,oldPath,newPath,newOutputPath)` saves a separate copy with corrected references. The original MAT file is preserved.
 
 The YOLOv2 base network can be located with `which('yolov2VehicleDetector.mat')` in MATLAB. Pass that path to `ar.trainBootstrap`; its MAT file must contain lgraph. Its availability depends on the installed MATLAB products/support data.
 
