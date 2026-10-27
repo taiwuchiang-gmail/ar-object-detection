@@ -122,6 +122,8 @@ def main(argv=None):
             source=str(resolve(source))
             if not Path(source).exists(): parser.error(f'Source missing: {source}')
     from ultralytics import YOLO
+    from yolo_runtime import configure_local_checkpoint_loading
+    configure_local_checkpoint_loading(ROOT)
     model=YOLO(str(model_path))
     if args.command=='train':
         model.train(data=str(data),epochs=args.epochs,imgsz=args.imgsz,single_cls=True,

@@ -6,13 +6,13 @@ Yellow duck is the current reproduction focus; bike and laser configurations are
 
 ## Yellow duck detection preview
 
-![Yellow duck detection preview](docs/media/yellow-duck-detection.gif)
+![Fresh yellow duck detection preview](docs/media/yellow-duck-fresh-training.gif)
 
-[Watch or download the full MP4 (50 seconds)](docs/media/yellow-duck-detection.mp4) · [Still frame](docs/media/yellow-duck-detection.png)
+[Watch or download the fresh MP4 (29 seconds)](docs/media/yellow-duck-fresh-training.mp4) · [Still frame](docs/media/yellow-duck-fresh-training.png) · [Run provenance](docs/media/yellow-duck-fresh-training.json)
 
-Historical annotated output from the Python detection stage, showing the duck at different viewing angles with bounding boxes and confidence scores. The animation is an 8-second excerpt; the MP4 contains the complete saved result. Original predictions are retained, with only resizing and re-encoding for preview. This is an existing result, not a newly reproduced end-to-end training run.
+This preview was produced by the fresh end-to-end reproduction: automatic boxes from rendered duck frames, a newly initialized YOLOv2 bootstrap, a newly initialized YOLOv8n model, and one automatic high-confidence feedback iteration. **No bounding boxes were drawn or corrected manually, and no historical duck detector weights initialized either model.** The animation is an 8-second excerpt; the MP4 contains the complete held-recording result.
 
-The training workflow generates its object annotations automatically; no manual bounding-box annotation is required. [Preview provenance](docs/media/yellow-duck-detection.json). To regenerate these media files from the original annotated recording, run `exportDuckDemo` in MATLAB after local asset setup; the exporter refuses to overwrite existing demo files.
+On a separate difficult recording that was not used for feedback, frames with predictions at confidence 0.70 or higher increased from 4/144 after the first YOLOv8 stage to 122/144 after feedback training. These are prediction-coverage counts, not independently annotated accuracy. The [historical preview](docs/media/yellow-duck-detection.mp4) remains available for comparison.
 
 ## Workflow
 
@@ -77,6 +77,10 @@ python python/pipeline.py train --object duck --data datasets/duck/assembled_001
 ```
 
 Copy configs/split.example.json to a new manifest and replace the examples with real, separate recording sessions. Keep all feedback iterations from one recording in the same partition. Train, validation, and test folders can all use automatically generated labels; no manually labeled split is required to run the workflow. Optional human review or independent accuracy assessment is separate from training. Candidate exports record source/model/confidence provenance; each run uses a new name. Candidate generation currently selects at most one object per frame, matching the historical experiments.
+
+## Reproduce training from captured video
+
+See [the fresh yellow-duck workflow](docs/reproduce-duck.md) for automatic label regeneration, synthetic background compositing, new YOLOv2 training, new YOLOv8 training, and a confidence-selected feedback iteration. No historical duck annotations or duck model weights initialize that run.
 
 ## Verification
 

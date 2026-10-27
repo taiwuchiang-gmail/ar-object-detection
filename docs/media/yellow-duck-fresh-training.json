@@ -1,0 +1,34 @@
+{
+  "source_kind": "fresh_end_to_end_automatically_annotated_detection_output",
+  "source_recording": "duck-test.mp4",
+  "output_codec": "h264",
+  "output_frame_size": [
+    640,
+    480
+  ],
+  "output_fps": 30,
+  "output_duration_seconds": 29.133333,
+  "output_frames": 874,
+  "gif_interval_seconds": [
+    8,
+    16
+  ],
+  "gif_fps": 8,
+  "training": {
+    "manual_bounding_boxes": 0,
+    "historical_duck_weights_used": false,
+    "automatic_synthetic_labels": 874,
+    "yolov2_epochs": 40,
+    "first_yolov8_epochs": 50,
+    "automatic_feedback_labels": 408,
+    "feedback_yolov8_epochs": 50
+  },
+  "separate_recording_prediction_coverage": {
+    "sampled_frames": 144,
+    "confidence_threshold": 0.7,
+    "first_yolov8_frames": 4,
+    "feedback_yolov8_frames": 122,
+    "interpretation": "Prediction coverage only; no independent ground-truth boxes were available."
+  },
+  "sha256": "39459fa3644bf0b1908c1223d1b88a3be9bfcbafa1c0c50b7a5f619242b26284"
+}

@@ -23,7 +23,7 @@ else
 end
 options = trainingOptions('sgdm',InitialLearnRate=0.001, ...
     MiniBatchSize=32,MaxEpochs=40,Shuffle='every-epoch', ...
-    Verbose=true,VerboseFrequency=10);
+    Verbose=true,VerboseFrequency=50,ExecutionEnvironment='auto',CheckpointPath=out);
 [detector,info] = trainYOLOv2ObjectDetector(trainingData,base.lgraph,options);
 modelPath = fullfile(out,'detector.mat');
 save(modelPath,'detector','info','objectName','groundTruthPath','baseNetworkPath');
